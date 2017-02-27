@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <link rel="stylesheet" href="./normalize.css" />
+        <link rel="stylesheet" href="./style.css" />
+        <link rel="icon" type="image/gif" href="./images/493logo-proto.gif"/>
+        <title>The Periodic Table of the Elements</title>
+    </h:head>
+    <h:body>
+        <h1 class="text-center">The Periodic Table of the Elements</h1>
+        <b:container>
+            <table>
+                <c:forEach var="i" begin="1" end="#{dbconnectionBean.largestY}">
+                    <tr class="rows">
+                        <ui:repeat value="#{dbconnectionBean.nextRow}" var="r">
+                            <td>
+                                <b:modal id="ab" title="Element Information" styleClass="modalPseudoClass">
+                                    <p class="atomName">#{r.name}</p><p class="atomNumber">Atomic Number: #{r.atomNum}</p>
+                                    <p>Mass: #{r.mass}</p><p>Group Number: #{r.groupNumber}</p><p>Period: #{r.period}</p>
+                                    <p>State of Matter at 25&deg;C: #{r.stateOfMatter25}</p>
+                                    <p>Valences: #{r.valences}</p><p>Configuration: #{r.configuration}</p>
+                                    <p>Density: #{r.density}</p><p>Series: #{r.series}</p>
+                                    <f:facet name="footer">
+                                        <b:button value="close" dismiss="modal" onclick="return false;"/>
+                                        <b:button value="Ok" look="primary" dismiss="modal" onclick="return false;"/>
+                                    </f:facet>
+                                </b:modal>
+                                <button class="#{r.style}" data-target="#{r.id}" data-toggle="modal"><p class="atomText">#{r.atomNum}<br/>#{r.symbol}</p></button>
+                            </td>
+                        </ui:repeat>
+                    </tr>
+                </c:forEach>
+            </table>
+        </b:container>
+    </h:body>
+</html>
+

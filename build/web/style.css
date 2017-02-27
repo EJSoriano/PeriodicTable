@@ -1,0 +1,56 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 24, 2017, 3:13:12 PM
+    Author     : TheDude
+*/
+
+* {
+    white-space: nowrap;
+}
+
+.visible {
+    width: 4em;
+    height: 4em;
+    border: 1px solid black;
+    display: inline-block;
+    background-color: yellow;
+    padding: 2px;
+    padding-left: 4px;
+    text-align: left;
+    line-height: 10px;
+    margin: 0 2px;
+    vertical-align: top;
+}
+
+.invisible {
+    width: 4em;
+    height: 4em;
+    padding: 2px;
+    padding-left: 4px;
+    display: inline-block;
+    text-align: left;
+    line-height: 10px;
+    margin: 0 2px;
+}
+
+.rows {
+    height: 4.2em;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+table {
+    margin: 0 auto;
+}
+
+.atomText {
+    line-height: 20px;
+}
+
+.atomName {
+    text-transform: capitalize;
+}
