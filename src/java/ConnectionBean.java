@@ -312,4 +312,13 @@ public class ConnectionBean implements Serializable {
         currRow++;
         return el;
     }
+    public ArrayList<Element> getAllElements() {
+        ArrayList<Element> all = new ArrayList<Element>();
+        for(Element e: elementObjs) {
+            if(!e.getName().equals("")) {
+                all.add(e);
+            }
+        }
+        return all;
+    }
 }

@@ -17,7 +17,7 @@ and open the template in the editor.
     height: 4em;
     border: 1px solid black;
     display: inline-block;
-    background-color: yellow;
+    background-color: #F68D51;
     padding: 2px;
     padding-left: 4px;
     text-align: left;
@@ -35,6 +35,40 @@ and open the template in the editor.
     text-align: left;
     line-height: 10px;
     margin: 0 2px;
+}
+
+.Metalloid {
+    background-color: #104577;
+    color: white;
+}
+
+.Nonmetal {
+    background-color: #BC3334;
+    color: white;
+}
+
+.Halogen {
+    background-color: #7CB5D2;
+}
+
+.Nobel {
+    background-color: #BB94B7;
+}
+
+.Metal {
+    background-color: #18A68D;
+}
+
+.Transactinide {
+    background-color: #BDD74B;
+}
+
+.Lanthanide {
+    background-color: #96CEB7;
+}
+
+.Actinide {
+    background-color: #FCE05E;
 }
 
 .rows {

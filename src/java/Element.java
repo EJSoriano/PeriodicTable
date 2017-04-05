@@ -106,7 +106,7 @@ public class Element {
         if(xCoord == -1) {
             return "ab";
         }
-        int prefix = 9 + (yCoord - 1) * 8 ;
+        int prefix = 10 + (yCoord - 1) * 8 ;
         int suffix = xCoord - 1;
         return "#j_idt" + prefix + "\\:" + suffix + "\\:" + "ab";
     }

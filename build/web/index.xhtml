@@ -14,24 +14,27 @@
     </h:head>
     <h:body>
         <h1 class="text-center">The Periodic Table of the Elements</h1>
+        
         <b:container>
+            <h:link value="Report Page" outcome="report" class="pull-right"></h:link>
+            <br/>
             <table>
                 <c:forEach var="i" begin="1" end="#{dbconnectionBean.largestY}">
                     <tr class="rows">
                         <ui:repeat value="#{dbconnectionBean.nextRow}" var="r">
                             <td>
-                                <b:modal id="ab" title="Element Information" styleClass="modalPseudoClass">
+                                <b:modal id="ab" title="Element Information" styleClass="modalPseudoClass #{r.name}">
                                     <p class="atomName">#{r.name}</p><p class="atomNumber">Atomic Number: #{r.atomNum}</p>
-                                    <p>Mass: #{r.mass}</p><p>Group Number: #{r.groupNumber}</p><p>Period: #{r.period}</p>
+                                    <p>Mass: #{r.mass} g/mole</p><p>Group Number: #{r.groupNumber}</p><p>Period: #{r.period}</p>
                                     <p>State of Matter at 25&deg;C: #{r.stateOfMatter25}</p>
                                     <p>Valences: #{r.valences}</p><p>Configuration: #{r.configuration}</p>
-                                    <p>Density: #{r.density}</p><p>Series: #{r.series}</p>
+                                    <p>Density: #{r.density} g/mL</p><p>Series: #{r.series}</p>
                                     <f:facet name="footer">
                                         <b:button value="close" dismiss="modal" onclick="return false;"/>
                                         <b:button value="Ok" look="primary" dismiss="modal" onclick="return false;"/>
                                     </f:facet>
                                 </b:modal>
-                                <button class="#{r.style}" data-target="#{r.id}" data-toggle="modal"><p class="atomText">#{r.atomNum}<br/>#{r.symbol}</p></button>
+                                <button class="#{r.style} #{r.series}" data-target=".#{r.name}" data-toggle="modal"><p class="atomText">#{r.atomNum}<br/>#{r.symbol}</p></button>
                             </td>
                         </ui:repeat>
                     </tr>
