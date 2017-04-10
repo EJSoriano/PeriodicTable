@@ -1,4 +1,7 @@
-/*
+
+import java.util.ArrayList;
+
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -20,6 +23,15 @@ public class Element {
     private String series;
     private int xCoord;
     private int yCoord;
+    private ArrayList<Isotope> isotopes;
+
+    public ArrayList<Isotope> getIsotopes() {
+        return isotopes;
+    }
+
+    public void setIsotopes(ArrayList<Isotope> isotopes) {
+        this.isotopes = isotopes;
+    }
 
     public String getMass() {
         return mass;
