@@ -11,45 +11,49 @@ and open the template in the editor.
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-    <head>
+    <h:head>
         <title>Admin page</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        
+    </h:head>
+    <h:body>
+        <b:container>
         <b:form>
-            <h:selectOneMenu value="#{functionality.selectedElemName}">
-            <f:selectItems value="#{dbconnectionBean.elementNames}"></f:selectItems>
+            <h:selectOneMenu value="#{functionalityBean.selectedElemName}">
+            <f:selectItems value="#{dbconnectionBean.elementNames}" var="item" itemValue="#{item}"></f:selectItems>
             
                            
             </h:selectOneMenu>
-            <b:commandButton value="Load Element" action="#{functionality.loadElement}"></b:commandButton>
+            <b:commandButton value="Load Element" action="#{functionalityBean.loadElement}"></b:commandButton>
+            <br/>
             <h:outputText value="X Coordinate"></h:outputText>
-            <b:inputText value="#{functionality.elemsubXCoord}" required="true"></b:inputText>
+            <b:inputText value="#{functionalityBean.elemsubXCoord}"></b:inputText>
             <h:outputText value="Y Coordinate"></h:outputText>
-            <b:inputText value="#{functionality.elemsubYCoord}" required="true"></b:inputText>
+            <b:inputText value="#{functionalityBean.elemsubYCoord}"></b:inputText>
             <h:outputText value="Name"></h:outputText>
-            <b:inputText value="#{functionality.elemsubName}" required="true"></b:inputText>
+            <b:inputText value="#{functionalityBean.elemsubName}"></b:inputText>
             <h:outputText value="Atomic Symbol"></h:outputText>
-            <b:inputText value="#{functionality.elemsubSymbol}" required="true"></b:inputText>
+            <b:inputText value="#{functionalityBean.elemsubSymbol}"></b:inputText>
             <h:outputText value="Atomic Number"></h:outputText>
-            <b:inputText value="#{functionality.elemsubNum}" required="true"></b:inputText>
+            <b:inputText value="#{functionalityBean.elemsubNum}"></b:inputText>
             <h:outputText value="Mass"></h:outputText>
-            <b:inputText value="#{functionality.elemsubMass}" required="true"></b:inputText>
+            <b:inputText value="#{functionalityBean.elemsubMass}"></b:inputText>
             <h:outputText value="Group Number"></h:outputText>
-            <b:inputText value="#{functionality.elemsubGroup}" required="true"></b:inputText>
+            <b:inputText value="#{functionalityBean.elemsubGroup}"></b:inputText>
             <h:outputText value="State of Matter at 25C"></h:outputText>
-            <b:inputText value="#{functionality.elemsubState}" required="true"></b:inputText>
+            <b:inputText value="#{functionalityBean.elemsubState}"></b:inputText>
             <h:outputText value="Valences"></h:outputText>
-            <b:inputText value="#{functionality.elemsubValence}" required="true"></b:inputText>
+            <b:inputText value="#{functionalityBean.elemsubValence}"></b:inputText>
             <h:outputText value="Election Configuration"></h:outputText>
-            <b:inputText value="#{functionality.elemsubDensity}" required="true"></b:inputText>
+            <b:inputText value="#{functionalityBean.elemsubConfig}"></b:inputText>
             <h:outputText value="Series"></h:outputText>
-            <b:inputText value="#{functionality.elemsubSeries}" required="true"></b:inputText>
-            <b:commandButton value="Insert Element" action="#{functionality.insertElement}"></b:commandButton>
-            <b:commandButton value="Update Element" action="#{functionality.updateElement}"></b:commandButton>
-            <b:commandButton value="Delete Element" action="#{functionality.deleteElement}"></b:commandButton>
+            <b:inputText value="#{functionalityBean.elemsubSeries}"></b:inputText>
+            <h:outputText value="Density"></h:outputText>
+            <b:inputText value="#{functionalityBean.elemsubDensity}"></b:inputText>
+            <b:commandButton value="Insert Element" action="#{functionalityBean.insertElement}"></b:commandButton>
+            <b:commandButton value="Update Element" action="#{functionalityBean.updateElement}"></b:commandButton>
+            <b:commandButton value="Delete Element" action="#{functionalityBean.deleteElement}"></b:commandButton>
         </b:form>
+        </b:container>
 
-    </body>
+    </h:body>
 </html>

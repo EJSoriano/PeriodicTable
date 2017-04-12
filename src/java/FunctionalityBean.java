@@ -138,7 +138,7 @@ public class FunctionalityBean implements Serializable {
     }
     private Integer elemsubXCoord, elemsubYCoord;
 
-    public FunctionalityBean(Connection conn) {
+    public FunctionalityBean() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://periodictable.cb2vg6rxwemx.us-west-2.rds.amazonaws.com:3306/cecs493ptable", "root", "z_?PvVIr,HcuK_2vU9ldbE_i0");
@@ -199,6 +199,7 @@ public class FunctionalityBean implements Serializable {
         String name = selectedElemName;
         ConnectionBean bean = new ConnectionBean(conn);
         Element e = bean.getElementByName(name);
+        setElemsubSymbol(e.getSymbol());
         setElemsubConfig(e.getConfiguration());
         setElemsubDensity(e.getDensity());
         setElemsubGroup(e.getGroupNumber());
@@ -223,8 +224,8 @@ public class FunctionalityBean implements Serializable {
         int period = Integer.parseInt(getElemsubPeriod());
         String state25 = getElemsubState();
         String valences = getElemsubValence();
-        String elecConf = getElemsubConfiguration();
-        String density = getElemsubConfig();
+        String elecConf = getElemsubConfig();
+        String density = getElemsubDensity();
         String series = getElemsubSeries();
         int xCor = getElemsubXCoord();
         int yCor = getElemsubYCoord();

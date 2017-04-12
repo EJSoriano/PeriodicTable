@@ -1,5 +1,5 @@
 
-import com.sun.org.apache.xpath.internal.axes.WalkerFactory;
+import com.sun.org.apache.xml.internal.serializer.ToHTMLStream;
 import java.io.Serializable;
 import java.sql.*;
 import java.util.*;
@@ -88,6 +88,12 @@ public class ConnectionBean implements Serializable {
             System.err.println("Connection Error: " + e);
         }
     }
+    
+    public void displayElementsArrayList() {
+        for(Element e : elements) {
+            System.out.println(e.getName() + ", " + e.getxCoord() + ", " + e.getyCoord());
+        }
+    }
 
     //Initializes element and isotope data, construct main table. ISOTOPE DISPLAY NOT INCLUDED.
     public void initializeData() {
@@ -142,9 +148,10 @@ public class ConnectionBean implements Serializable {
 
                 elementList.put(element);
             }
+
             System.out.println(getLargestX() +"," + getLargestY());
-            for (int i = 1; i <= 10; i++) {
-                for (int j = 1; j <= 18; j++) {
+            for (int i = 1; i <= getLargestY(); i++) {
+                for (int j = 1; j <= getLargestX(); j++) {
                     JSONObject json = getElementAt(j, i);
                     System.out.println("SOMETHING");
                     if(json!=null)System.out.println(json.getString("elemName") + ", " + json.getString("xCor") + ", " + json.getString("yCor"));
@@ -215,7 +222,6 @@ public class ConnectionBean implements Serializable {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
         }
         return null;
     }
@@ -355,17 +361,14 @@ public class ConnectionBean implements Serializable {
         return all;
     }
     
-    public void displayElementsArrayList() {
-        for(Element e : elements) {
-            System.out.println(e.getName() + ", " + e.getxCoord() + ", " + e.getyCoord());
-        }
-    }
-    
     //Example of how to instantiate the Functionality Bean
     public static void main(String args[]) throws Exception {
         ConnectionBean cb = new ConnectionBean();
+        JSONObject e = cb.getElementAt(18, 10);
+        
 //        System.out.println(cb.getElementAt(2, 1).get("elemName"));
         cb.displayElementsArrayList();
+        System.out.println(e);
         
         
     }

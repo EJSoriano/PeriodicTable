@@ -28,6 +28,10 @@ public class Element {
     public ArrayList<Isotope> getIsotopes() {
         return isotopes;
     }
+    
+    public void displayElement() {
+        System.out.println(style + name + symbol + atomNum + mass + groupNumber + period + stateOfMatter25 + valences + configuration + density + series + xCoord + yCoord);
+    }
 
     public void setIsotopes(ArrayList<Isotope> isotopes) {
         this.isotopes = isotopes;

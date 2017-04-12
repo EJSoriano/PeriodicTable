@@ -4,13 +4,17 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/Users/TheDude/NetBeansProjects/PeriodicTableWeb/web/WEB-INF/beans.xml</file>
+            <file>file:/Users/TheDude/NetBeansProjects/PeriodicTableWeb/web/report.xhtml</file>
+            <file>file:/Users/TheDude/NetBeansProjects/PeriodicTableWeb/build/web/WEB-INF/web.xml</file>
+            <file>file:/Users/TheDude/NetBeansProjects/PeriodicTableWeb/build/web/index.xhtml</file>
+            <file>file:/Users/TheDude/NetBeansProjects/PeriodicTableWeb/web/login.xhtml</file>
+            <file>file:/Users/TheDude/NetBeansProjects/PeriodicTableWeb/src/java/FunctionalityBean.java</file>
+            <file>file:/Users/TheDude/NetBeansProjects/PeriodicTableWeb/web/admin.xhtml</file>
+            <file>file:/Users/TheDude/NetBeansProjects/PeriodicTableWeb/web/normalize.css</file>
             <file>file:/Users/TheDude/NetBeansProjects/PeriodicTableWeb/src/java/Isotope.java</file>
             <file>file:/Users/TheDude/NetBeansProjects/PeriodicTableWeb/web/index.xhtml</file>
             <file>file:/Users/TheDude/NetBeansProjects/PeriodicTableWeb/src/java/Element.java</file>
             <file>file:/Users/TheDude/NetBeansProjects/PeriodicTableWeb/web/WEB-INF/web.xml</file>
-            <file>file:/Users/TheDude/NetBeansProjects/PeriodicTableWeb/src/java/FunctionalityBean.java</file>
-            <file>file:/Users/TheDude/NetBeansProjects/PeriodicTableWeb/web/admin.xhtml</file>
-            <file>file:/Users/TheDude/NetBeansProjects/PeriodicTableWeb/web/normalize.css</file>
             <file>file:/Users/TheDude/NetBeansProjects/PeriodicTableWeb/src/java/ConnectionBean.java</file>
         </group>
     </open-files>

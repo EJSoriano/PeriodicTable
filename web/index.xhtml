@@ -33,16 +33,16 @@
                                         <b:button value="close" dismiss="modal" onclick="return false;"/>
                                         <b:button value="Ok" look="primary" dismiss="modal" onclick="return false;"/>
                                     </f:facet>
-                                    <b:panel title="Isotopes" collapsible="true">
-                                        <ui:repeat value="#{dbconnectionBean.getIsotopesOfAtom(r.atomNum)}" var="i">
+                                    <b:panel title="Isotopes" collapsible="true" collapsed="true">
+                                        <ui:repeat value="#{dbconnectionBean.isotopesOfAtomList}" var="item">
                                             <ul>
-                                                <li>Name: #{i.isoName}</li>
-                                                <li>Number: #{i.isoNum}</li>
-                                                <li>Symbol: #{i.symbol}</li>
-                                                <li>Mass: #{i.mass}</li>
-                                                <li>Composition: #{i.isoComp}</li>
-                                                <li>Weight: #{i.isoWeight}</li>
-                                                <li>Abundance: #{i.abundance}</li>
+                                                <li>Name: #{item.isoName}</li>
+                                                <li>Number: #{item.isoNum}</li>
+                                                <li>Symbol: #{item.symbol}</li>
+                                                <li>Mass: #{item.mass}</li>
+                                                <li>Composition: #{item.isoComp}</li>
+                                                <li>Weight: #{item.isoWeight}</li>
+                                                <li>Abundance: #{item.abundance}</li>
                                             </ul>
                                         </ui:repeat>
                                     </b:panel>
