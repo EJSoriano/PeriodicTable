@@ -11,19 +11,112 @@ and open the template in the editor.
 * {
     white-space: nowrap;
 }
+body{
+    margin: 0;
+    padding: 0;
+    height: auto;
+    width: auto;
+}
+header{
+    background-color: #bf837e;
+    margin: 0em;
+    padding: 1em;
+    width: auto;
+}
+
+nav {
+    background-color: #8e4039;
+    text-align: center;
+    padding: 0em;
+    margin: 0em;
+    font-size: 120%;
+    font-weight: bold;
+}
+
+nav ul li {
+    display: inline;
+    margin: 1em;
+}
+.elembutton:hover {
+    border: solid 3pt #d8b35b;
+    background-color: #ffe884;
+    color: black;
+    font-weight: bold;
+}
+
+nav a { text-decoration: none; }
+nav a:visited {
+    color:white;
+}
+
+.navButton{
+    color: white;
+    padding: 0.5em 0.5em 1em 0.5em;
+}
+
+.navButton:hover{
+    color: black; 
+    background-color: white;
+    text-decoration: none;
+    border-radius: 0.7em;
+}
+.title{
+    font-size: 400%;
+    font-weight: bold;
+    color: white;;
+}
+
+.reportTable{
+    margin: 0 auto !important;
+}
+
+.selected{
+    background-color: white;
+    padding: 0.5em 0.5em 1em 0.5em;
+    border: solid 3px white;
+    border-radius: 0.7em;
+}
+
+.adminForm{
+    max-width: 60%;
+    padding: 2em;
+    margin: 2em auto;
+    background-color: #7f825f;
+    border: solid 3pt darkgray;
+    position: relative;
+    min-height: 50%;
+}
+.field{
+    float: left;
+    margin: 1em;
+    color: white;
+}
+
+.loadField{
+    margin: 0.5em;
+    text-align: center;
+}
+
+.editButtons{
+    width: 100%;
+    position: absolute;
+    bottom: 1em;
+    text-align: center;
+}
 
 .visible {
     width: 4em;
     height: 4em;
     border: 1px solid black;
     display: inline-block;
-    background-color: #F68D51;
+    background-color: #7f4343;
     padding: 2px;
     padding-left: 4px;
-    text-align: left;
+    text-align: center;
     line-height: 10px;
     margin: 0 2px;
     vertical-align: top;
+    color: white;
 }
 
 .invisible {
@@ -38,37 +131,37 @@ and open the template in the editor.
 }
 
 .Metalloid {
-    background-color: #104577;
+    background-color: #75888e;
     color: white;
 }
 
 .Nonmetal {
-    background-color: #BC3334;
+    background-color: #a89681;
     color: white;
 }
 
 .Halogen {
-    background-color: #7CB5D2;
+    background-color: #7f6262;
 }
 
 .Nobel {
-    background-color: #BB94B7;
+    background-color: #6d6a52;
 }
 
 .Metal {
-    background-color: #18A68D;
+    background-color: #465968;
 }
 
 .Transactinide {
-    background-color: #BDD74B;
+    background-color: #ad826b;
 }
 
 .Lanthanide {
-    background-color: #96CEB7;
+    background-color: #80716a;
 }
 
 .Actinide {
-    background-color: #FCE05E;
+    background-color: #7f825f;
 }
 
 .rows {
@@ -88,3 +181,4 @@ table {
 .atomName {
     text-transform: capitalize;
 }
+

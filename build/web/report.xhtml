@@ -7,37 +7,59 @@
     <h:head>
         <title>Report Page</title>
         <link rel="stylesheet" href="./style.css" />
+        <link rel="icon" type="image/gif" href="./images/493logo-proto.gif"/>
     </h:head>
     <h:body>
+        <header>
+            <p class="text-center title">The Periodic Table</p>
+        </header>
+        <nav>
+            <ul>
+                <li>
+                    <h:link value="Periodic Table" outcome="index" class="pull-center navButton"></h:link>
+                </li>
+                <li class="selected">
+                    Element Report 
+                </li>
+                <li>
+                    <h:link value="Update Elements" outcome="admin" class="pull-center navButton"></h:link>
+                </li>
+            </ul>
+        </nav>
         <b:container>
-            <ui:repeat value="#{dbconnectionBean.allElements}" var ="elem">
-            <b:modal id="ab" title="Isotopes" styleClass="modalPseudoClass #{elem.name}">
-                <ui:repeat value="#{dbconnectionBean.getIsotopesOfAtomListReport(elem.atomNum)}" var="item">
-                    <ul>
-                        <li>Name: #{item.isoName}</li>
-                        <li>Number: #{item.isoNum}</li>
-                        <li>Symbol: #{item.symbol}</li>
-                        <li>Mass: #{item.mass}</li>
-                        <li>Composition: #{item.isoComp}</li>
-                        <li>Weight: #{item.isoWeight}</li>
-                        <li>Abundance: #{item.abundance}</li>
-                    </ul>
-                </ui:repeat>
-                </b:modal>
-            </ui:repeat>
-            <b:dataTable value="#{dbconnectionBean.allElements}" var="r" page-length="200" page-length-menu="[10, 25, 50, 100, 200]">
-                <b:dataTableColumn value="#{r.name}" label='Name'/>
-                <b:dataTableColumn value="#{r.atomNum}" label='Atomic Number'/>
-                <b:dataTableColumn value="#{r.mass}" label='Mass'/>
-                <b:dataTableColumn value="#{r.groupNumber}" label='Group Number'/>
-                <b:dataTableColumn value="#{r.period}" label='Period'/>
-                <b:dataTableColumn value="#{r.stateOfMatter25}" label='State of Matter at 25C'/>
-                <b:dataTableColumn value="#{r.valences}" label='Electron Valences'/>
-                <b:dataTableColumn value="#{r.density}" label='Density'/>
-                <b:dataTableColumn value="#{r.series}" label='Series'/>
-                <b:dataTableColumn label="Isotopes"><a href=".#{r.name}" data-toggle="modal">View Isotopes</a></b:dataTableColumn>
-            </b:dataTable>
+            <b:row>
+                <b:column small-screen="12">
+                    <ui:repeat value="#{dbconnectionBean.allElements}" var ="elem">
+                        <b:modal id="ab" title="Isotopes" styleClass="modalPseudoClass #{elem.name}">
+                            <ui:repeat value="#{dbconnectionBean.getIsotopesOfAtomListReport(elem.atomNum)}" var="item">
+                                <ul>
+                                    <li>Symbol: #{item.symbol}</li>
+                                    <li>Name: #{item.isoName}</li>
+                                    <li>Number: #{item.isoNum}</li>
+                                    <li>Mass: #{item.mass} g/mol</li>
+                                    <li>Composition: #{item.isoComp}</li>
+                                    <li>Weight: #{item.isoWeight}</li>
+                                    <li>Abundance: %#{item.abundance}</li>
+                                </ul>
+                            </ui:repeat>
+                        </b:modal>
+                    </ui:repeat>
+                    <b:dataTable responsive="true" class="table-responsive" value="#{dbconnectionBean.allElements}" var="r" page-length="200" page-length-menu="[10, 25, 50, 100, 200]">
+                        <b:dataTableColumn value="#{r.atomNum}" label='Atomic #'/>
+                        <b:dataTableColumn value="#{r.name}" label='Name'/>
+                        <b:dataTableColumn value="#{r.symbol}" label='Symbol'/>
+                        <b:dataTableColumn value="#{r.series}" label='Series'/>
+                        <b:dataTableColumn value="#{r.mass}" label='Mass g/mol'/>
+                        <b:dataTableColumn value="#{r.density}" label='Density g/mL'/>
+                        <b:dataTableColumn value="#{r.stateOfMatter25}" label='Physical State @ 25C'/>
+                        <b:dataTableColumn value="#{r.groupNumber}" label='Group'/>
+                        <b:dataTableColumn value="#{r.period}" label='Period'/>
+                        <b:dataTableColumn value="#{r.valences}" label='Valences'/>
+                        <b:dataTableColumn value="#{r.configuration}" label='Electron Configuration'/>
+                        <b:dataTableColumn label="Isotopes"><a href=".#{r.name}" data-toggle="modal">View Isotopes</a></b:dataTableColumn>
+                    </b:dataTable>
+                </b:column>
+            </b:row>
         </b:container>
     </h:body>
 </html>
-

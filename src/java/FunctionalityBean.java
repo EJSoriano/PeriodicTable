@@ -13,6 +13,20 @@ import javax.faces.bean.ViewScoped;
 public class FunctionalityBean implements Serializable {
     
     private String selectedElemName;
+    private String selectedIsotopeName;
+    private String isotopeAtomNum;
+
+    public String getIsotopeAtomNum() {
+        return isotopeAtomNum;
+    }
+
+    public String getSelectedIsotopeName() {
+        return selectedIsotopeName;
+    }
+
+    public void setSelectedIsotopeName(String selectedIsotopeName) {
+        this.selectedIsotopeName = selectedIsotopeName;
+    }
 
     public String getSelectedElemName() {
         return selectedElemName;
@@ -24,6 +38,64 @@ public class FunctionalityBean implements Serializable {
 
     private Connection conn;
     private String elemsubName, elemsubSymbol, elemsubNum, elemsubMass, elemsubGroup, elemsubPeriod, elemsubState, elemsubValence, elemsubConfig, elemsubDensity, elemsubSeries, elemsubConfiguration;
+    private String isotopeSymbol, isotopeName, isotopeNumber, isotopeMass, isotopeComposition, isotopeWeight, isotopeAbundance;
+    
+
+    public String getIsotopeSymbol() {
+        return isotopeSymbol;
+    }
+
+    public void setIsotopeSymbol(String isotopeSymbol) {
+        this.isotopeSymbol = isotopeSymbol;
+    }
+
+    public String getIsotopeName() {
+        return isotopeName;
+    }
+
+    public void setIsotopeName(String isotopeName) {
+        this.isotopeName = isotopeName;
+    }
+
+    public String getIsotopeNumber() {
+        return isotopeNumber;
+    }
+
+    public void setIsotopeNumber(String isotopeNumber) {
+        this.isotopeNumber = isotopeNumber;
+    }
+
+    public String getIsotopeMass() {
+        return isotopeMass;
+    }
+
+    public void setIsotopeMass(String isotopeMass) {
+        this.isotopeMass = isotopeMass;
+    }
+
+    public String getIsotopeComposition() {
+        return isotopeComposition;
+    }
+
+    public void setIsotopeComposition(String isotopeComposition) {
+        this.isotopeComposition = isotopeComposition;
+    }
+
+    public String getIsotopeWeight() {
+        return isotopeWeight;
+    }
+
+    public void setIsotopeWeight(String isotopeWeight) {
+        this.isotopeWeight = isotopeWeight;
+    }
+
+    public String getIsotopeAbundance() {
+        return isotopeAbundance;
+    }
+
+    public void setIsotopeAbundance(String isotopeAbundance) {
+        this.isotopeAbundance = isotopeAbundance;
+    }
 
     public String getElemsubName() {
         return elemsubName;
@@ -214,6 +286,21 @@ public class FunctionalityBean implements Serializable {
         setElemsubYCoord(e.getyCoord());
     }
     
+    public void loadIsotope() {
+        String sym = selectedIsotopeName;
+        ConnectionBean bean = new ConnectionBean(conn);
+        Isotope i = bean.getIsotopeBySymbol(sym);
+        setIsotopeSymbol(i.getSymbol());
+        setIsotopeAtomNum("" + i.getAtomNum());
+        setIsotopeName(i.getIsoName());
+        setIsotopeNumber(i.getIsoNum());
+        setIsotopeMass(i.getMass());
+        setIsotopeComposition(i.getIsoComp());
+        setIsotopeWeight(i.getIsoWeight());
+        setIsotopeAbundance(i.getAbundance());
+    }
+    
+    
     //Adds an element to the database.
     public void insertElement() {
         String elemName = getElemsubName();
@@ -301,65 +388,53 @@ public class FunctionalityBean implements Serializable {
         insertElement();
     }
 
-    public void insertIsotope(int atomNum, String isoName, int isoNum, String isoSymb, float isoMass, String isoComp, String isoWeight, String abundance) {
-        int atomNumInt = 1000;
-        float atomNumFloat = 0f;
-        float isoNumFloat = 0f;
-        String mass = "";
-        Random rand = new Random();
-        int n = rand.nextInt(999) + 500;
-        String symbol = ("Unnamed Isotope " + n);
+    public void insertIsotope() {
+        
+        
         String nothing = null;
 
-        if (!Integer.toBinaryString(atomNum).equals("")) {
-            atomNumFloat = (float) atomNum;
-        }
-        if (!Integer.toBinaryString(isoNum).equals("")) {
-            isoNumFloat = (float) isoNum;
-        }
-        if (isoSymb.isEmpty()) {
-            isoSymb = symbol;
-        }
-        if (!String.valueOf(isoMass).isEmpty()) {
-            mass = String.valueOf(isoMass);
-        }
+        
 
         try {
             String query = "{call sp_insertisotope(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setFloat(1, atomNumFloat);
+            stmt.setFloat(1, Float.parseFloat(getIsotopeAtomNum()));
             stmt.setString(2, nothing);
-            stmt.setString(3, isoName);
-            stmt.setFloat(4, isoNumFloat);
-            stmt.setString(5, isoSymb);
-            stmt.setString(6, mass);
-            stmt.setString(7, isoComp);
-            stmt.setString(8, isoWeight);
+            stmt.setString(3, getIsotopeName());
+            stmt.setFloat(4, Float.parseFloat(getIsotopeNumber()));
+            stmt.setString(5, getIsotopeSymbol());
+            stmt.setString(6, getIsotopeMass());
+            stmt.setString(7, getIsotopeComposition());
+            stmt.setString(8, getIsotopeWeight());
             stmt.setString(9, nothing);
-            stmt.setString(10, abundance);
+            stmt.setString(10, getIsotopeAbundance());
 
             stmt.execute();
-            System.out.println("Isotope " + isoSymb + " was added.");
+            System.out.println("Isotope " + getIsotopeSymbol() + " was added.");
         } catch (Exception e) {
         }
     }
 
     //Deletes an isotope given the isotopic symbol
-    public void deleteIsotope(String isoSymb) {
+    public void deleteIsotope() {
         try {
             String query = "{call sp_deleteisotope(?)}";
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, isoSymb);
+            stmt.setString(1, getIsotopeSymbol());
             stmt.execute();
-            System.out.println("Isotope " + isoSymb + " was deleted.");
+            System.out.println("Isotope " + getIsotopeSymbol() + " was deleted.");
         } catch (Exception e) {
         }
     }
 
     //Updates an isotope. Update form must contain ALL data, even unedited data. Use object getters to fill the form upon generation.
-    public void updateIsotope(int atomNum, String isoName, int isoNum, String isoSymb, float isoMass, String isoComp, String isoWeight, String abundance) {
-        deleteIsotope(isoSymb);
-        insertIsotope(atomNum, isoName, isoNum, isoSymb, isoMass, isoComp, isoWeight, abundance);
-        System.out.println("Isotope " + isoSymb + " was updated.");
+    public void updateIsotope() {
+        deleteIsotope();
+        insertIsotope();
+        System.out.println("Isotope " + getIsotopeSymbol() + " was updated.");
+    }
+
+    public void setIsotopeAtomNum(String isotopeAtomNum) {
+        this.isotopeAtomNum = isotopeAtomNum;
     }
 }

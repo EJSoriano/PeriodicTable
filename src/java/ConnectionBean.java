@@ -16,16 +16,16 @@ public class ConnectionBean implements Serializable {
 
     private Connection conn;
     private JSONArray elementList = new JSONArray();
-    private ArrayList<Element> elements = new ArrayList<Element>();
-    private ArrayList<Isotope> isotopes = new ArrayList<Isotope>();
+    private List<Element> elements = new ArrayList<Element>();
+    private List<Isotope> isotopes = new ArrayList<Isotope>();
     private int currRow = 0;
     Element currElement;
     private int elementReportNum = -1;
     private int currElementNum;
-    private ArrayList<Isotope> isotopesOfAtomList;
-    private ArrayList<Isotope> isotopesOfAtomListReport;
+    private List<Isotope> isotopesOfAtomList;
+    private List<Isotope> isotopesOfAtomListReport;
 
-    public ArrayList<Isotope> getIsotopesOfAtomListReport(String atomNum) {
+    public List<Isotope> getIsotopesOfAtomListReport(String atomNum) {
         int num = Integer.parseInt(atomNum);
         isotopesOfAtomListReport = new ArrayList<Isotope>();
         for(Isotope i : isotopes) {
@@ -35,11 +35,11 @@ public class ConnectionBean implements Serializable {
         return isotopesOfAtomListReport;
     }
 
-    public void setIsotopesOfAtomListReport(ArrayList<Isotope> isotopesOfAtomListReport) {
+    public void setIsotopesOfAtomListReport(List<Isotope> isotopesOfAtomListReport) {
         this.isotopesOfAtomListReport = isotopesOfAtomListReport;
     }
 
-    public ArrayList<Isotope> getIsotopesOfAtomList() {
+    public List<Isotope> getIsotopesOfAtomList() {
         isotopesOfAtomList = new ArrayList<Isotope>();
         if(currElement.getAtomNum().isEmpty()) {
             currElementNum++;
@@ -63,7 +63,7 @@ public class ConnectionBean implements Serializable {
         return isotopesOfAtomList;
     }
 
-    public void setIsotopesOfAtomList(ArrayList<Isotope> isotopesOfAtomList) {
+    public void setIsotopesOfAtomList(List<Isotope> isotopesOfAtomList) {
         this.isotopesOfAtomList = isotopesOfAtomList;
     }
     
@@ -188,7 +188,7 @@ public class ConnectionBean implements Serializable {
                 isoName = rs.getString("IsoName");
                 isoNum = rs.getFloat("IsotopeNum");
                 isoSymb = rs.getString("Symbol");
-                isoMass = rs.getString("RelativeAtomicMass");
+                isoMass = rs.getString("MassOfAtom");
                 isoComp = rs.getString("Isotopic Composition");
                 isoWeight = rs.getString("Standard Atomic Weight");
                 isoAbundance = rs.getString("Abundance");
@@ -203,7 +203,7 @@ public class ConnectionBean implements Serializable {
     }
 
     //Returns the elements (and invisible elements) as an arraylist. 
-    public ArrayList<Element> getElements() {
+    public List<Element> getElements() {
         return elements;
     }
 
@@ -232,6 +232,38 @@ public class ConnectionBean implements Serializable {
                 return e;
             }
         } return null;
+    }
+    
+     public Isotope getIsotopeByName(String name) {
+        for(Isotope i : isotopes) {
+            
+            if (i.getIsoName().equals(name)) {
+                return i;
+            }
+
+        } return null;
+    }
+     
+    public Isotope getIsotopeBySymbol(String sym) {
+        for(Isotope i : isotopes) {
+            if(i.getSymbol().equals(sym)) {
+                return i;
+            }
+        }
+        
+        return null;
+    }
+     
+    public ArrayList<String> getIsotopeNames() {
+        ArrayList<String> names = new ArrayList<String>();
+        for(Isotope i : isotopes) {
+           
+                names.add(i.getSymbol());
+            
+            
+            
+        }
+        return names;
     }
     
     public ArrayList<String> getElementNames() {
@@ -367,8 +399,11 @@ public class ConnectionBean implements Serializable {
         JSONObject e = cb.getElementAt(18, 10);
         
 //        System.out.println(cb.getElementAt(2, 1).get("elemName"));
-        cb.displayElementsArrayList();
-        System.out.println(e);
+        ArrayList<String> names = cb.getIsotopeNames();
+        for(String name : names) {
+            if(name != null)
+                System.out.println(name);
+        }
         
         
     }

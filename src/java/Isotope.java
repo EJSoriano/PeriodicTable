@@ -11,13 +11,13 @@ public class Isotope {
     
     public Isotope (float atomNum , String isoName, float isoNum, String symbol, String isoMass, String isoComp, String isoWeight, String abundance) {
        this.atomNum = atomNum;
-       this.isoName = isoName;
+       this.isoName = "" + isoName;
        this.isoNum = isoNum;
-       this.symbol = symbol;
-       this.isoMass = isoMass;
-       this.isoComp = isoComp;
-       this.isoWeight = isoWeight;
-       this.abundance = abundance;
+       this.symbol = "" + symbol;
+       this.isoMass = "" + isoMass;
+       this.isoComp = "" + isoComp;
+       this.isoWeight = "" + isoWeight;
+       this.abundance = "" + abundance;
     }
     
     public int getAtomNum(){

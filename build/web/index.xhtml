@@ -7,47 +7,64 @@
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <link rel="stylesheet" href="./normalize.css" />
         <link rel="stylesheet" href="./style.css" />
         <link rel="icon" type="image/gif" href="./images/493logo-proto.gif"/>
-        <title>The Periodic Table of the Elements</title>
+        <title>Periodic Table</title>
     </h:head>
     <h:body>
-        <h1 class="text-center">The Periodic Table of the Elements</h1>
-        
+        <header>
+            <p class="text-center title">The Periodic Table</p>
+        </header>
+        <nav>
+            <ul>
+                <li class="selected">
+                    Periodic Table
+                </li>
+                <li>
+                    <h:link value="Element Report" outcome="report" class="pull-center navButton"></h:link>
+                </li>
+                <li>
+                    <h:link value="Update Elements" outcome="admin" class="pull-center navButton"></h:link>
+                </li>
+            </ul>
+        </nav>
         <b:container>
-            <h:link value="Report Page" outcome="report" class="pull-right"></h:link>
             <br/>
             <table>
                 <c:forEach var="i" begin="1" end="#{dbconnectionBean.largestY}">
                     <tr class="rows">
                         <ui:repeat value="#{dbconnectionBean.nextRow}" var="r">
                             <td>
-                                <b:modal id="ab" title="Element Information" styleClass="modalPseudoClass #{r.name}">
-                                    <p class="atomName">#{r.name}</p><p class="atomNumber">Atomic Number: #{r.atomNum}</p>
-                                    <p>Mass: #{r.mass} g/mole</p><p>Group Number: #{r.groupNumber}</p><p>Period: #{r.period}</p>
-                                    <p>State of Matter at 25&deg;C: #{r.stateOfMatter25}</p>
-                                    <p>Valences: #{r.valences}</p><p>Configuration: #{r.configuration}</p>
-                                    <p>Density: #{r.density} g/mL</p><p>Series: #{r.series}</p>
+                                <b:modal id="ab"  title="#{r.name}" styleClass="modalPseudoClass #{r.name}" >
+                                    <p class="atomNumber"><strong>Atomic Number: </strong>#{r.atomNum}</p>
+                                    <p><strong>Symbol: </strong>#{r.symbol}</p>
+                                    <p><strong>Series: </strong>#{r.series}</p>
+                                    <p><strong>Mass: </strong>#{r.mass} g/mol</p>
+                                    <p><strong>Density: </strong>#{r.density} g/mL</p>
+                                    <p><strong>State of Matter at 25&deg;C: </strong>#{r.stateOfMatter25}</p>
+                                    <p><strong>Group: </strong>#{r.groupNumber}</p>
+                                    <p><strong>Period: </strong>#{r.period}</p>
+                                    <p><strong>Valences: </strong>#{r.valences}</p>
+                                    <p><strong>Configuration: </strong>#{r.configuration}</p>
                                     <f:facet name="footer">
-                                        <b:button value="close" dismiss="modal" onclick="return false;"/>
+                                        <b:button value="Close" dismiss="modal" onclick="return false;"/>
                                         <b:button value="Ok" look="primary" dismiss="modal" onclick="return false;"/>
                                     </f:facet>
                                     <b:panel title="Isotopes" collapsible="true" collapsed="true">
                                         <ui:repeat value="#{dbconnectionBean.isotopesOfAtomList}" var="item">
                                             <ul>
-                                                <li>Name: #{item.isoName}</li>
-                                                <li>Number: #{item.isoNum}</li>
-                                                <li>Symbol: #{item.symbol}</li>
-                                                <li>Mass: #{item.mass}</li>
-                                                <li>Composition: #{item.isoComp}</li>
-                                                <li>Weight: #{item.isoWeight}</li>
-                                                <li>Abundance: #{item.abundance}</li>
+                                                <li><strong>Symbol: </strong>#{item.symbol}</li>
+                                                <li><strong>Name: </strong>#{item.isoName}</li>
+                                                <li><strong>Number: </strong>#{item.isoNum}</li>
+                                                <li><strong>Mass: </strong>#{item.mass} g/mol</li>
+                                                <li><strong>Composition: </strong>#{item.isoComp}</li>
+                                                <li><strong>Weight: </strong>#{item.isoWeight}</li>
+                                                <li><strong>Abundance: </strong>%#{item.abundance}</li>
                                             </ul>
                                         </ui:repeat>
                                     </b:panel>
                                 </b:modal>
-                                <button class="#{r.style} #{r.series}" data-target=".#{r.name}" data-toggle="modal"><p class="atomText">#{r.atomNum}<br/>#{r.symbol}</p></button>
+                                <button class="elembutton #{r.style} #{r.series}" data-target=".#{r.name}" data-toggle="modal"><p class="atomText">#{r.atomNum}<br/>#{r.symbol}</p></button>
                             </td>
                         </ui:repeat>
                     </tr>
@@ -56,4 +73,3 @@
         </b:container>
     </h:body>
 </html>
-
